@@ -58,14 +58,7 @@ async function theDelayIsComing(process,delay){
 
 app.get('/', async function (req, res) {
   res.send(`
-    LLC Buggy server v.0.0.0.0/2 
-    Use some commands: 
-    oo 
-    o_o
-    O_o
-    o_O
-    0_0
-    O_O
+    LLC
   `);
 });
 
@@ -113,9 +106,17 @@ app.delete('/services/:serviceId', function (req,res) {
     const {serviceId} = req.params;
     console.log(`deleting:${serviceId}`);
     
-    services = [
-      ...services.filter( o => o.id !== serviceId ),
-    ];
+    console.log(`getting:${serviceId}`);
+	    const found = services.filter( o => o.id === serviceId );
+	    console.log(`found:${found.length}`);
+	    if (found.length > 0){
+	      res.send(found[0]);
+	    }
+	    else{
+	      res.statusMessage = "The error is coming.";
+	      res.statusCode = 404;
+	      res.end()
+	    }
 
     res.send({
       'code': 0,
