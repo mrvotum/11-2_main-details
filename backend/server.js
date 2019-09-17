@@ -94,9 +94,18 @@ app.post('/services/:serviceId',function (req,res) {
 
 app.get('/services/:serviceId', async function (req,res) {
   theErrorIsComing(res) || theDelayIsComing( () => {
-    console.log(`getting...`);
     const {serviceId} = req.params;
-    res.send(services.filter( o => o.id === serviceId )[0] || {});
+    console.log(`getting:${serviceId}`);
+	    const found = services.filter( o => o.id === serviceId );
+	    console.log(`found:${found.length}`);
+	    if (found.length > 0){
+	      res.send(found[0]);
+	    }
+	    else{
+	      res.statusMessage = "The error is coming.";
+	      res.statusCode = 404;
+	      res.end()
+	    }
   });
 });
 
