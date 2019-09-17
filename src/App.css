@@ -54,12 +54,23 @@ ul li {
 }
 .message {
   position: absolute;
-  background-color: #ccc;
-  left:45%;
-  top:50%;
+  background-color: rgb(240, 240, 240);
+  left: 45%;
+  top: 50%;
+  border-radius: 10px;
+  padding: 0 10px;
 }
 .message button{
   float: right;
+  background-color: transparent;
+  border: none;
+}
+.message button:last-child{
+  background-color: rgb(219, 219, 219);
+  border-radius: 10px;
+}
+.message button:hover {
+  cursor: pointer;
 }
 .message p{
   clear: both;
